@@ -1,25 +1,32 @@
 
+`timescale 1 ns / 1 ps
+
 module top_tb ();
 
   reg CLK=0;
   wire R,G,B;
 
   wire v;
-  wire[7:0] C;
+  wire[7:0] HC;
+  wire[3:0] HB;
 
   wire ss, mosi, sck;
   reg miso=0;
   reg[3:0] S=0;
 
 
-top top_test(
+top #(
+  .issimulation(1)
+  )
+  top_test(
   CLK,
   ss,
   miso,
   mosi,
   sck,
 
-  C,
+  HC,
+  HB,
   v,
   S,
 
@@ -34,7 +41,7 @@ initial begin
   #10
   S[0]<=1;
   S[1]<=1;
-  #1000
+  #10000
   $display("hallu world");
   $finish;
 end

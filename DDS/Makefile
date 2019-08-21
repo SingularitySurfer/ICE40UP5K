@@ -14,7 +14,7 @@ sim: top_tb.vvp
 	vvp -N $< +vcd +trace +noerror
 	gtkwave out.vcd
 
-top_tb.vvp: top_tb.v top.v sram16x16.v Flash_to_SRAM.v spi_flash_reader.v
+top_tb.vvp: top_tb.v top.v sram16x16.v Flash_to_SRAM.v spi_flash_reader.v sigma_delta.v dds.v
 	iverilog -s top_tb -o $@ $^ `yosys-config --datdir/ice40/cells_sim.v`
 
 clean:

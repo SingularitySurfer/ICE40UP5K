@@ -12,7 +12,7 @@ module dds (
   output reg [15:0] cos,
 
   //sram interface
-  output[15:0] addr,
+  output reg [15:0] addr,
   input[15:0] data
   );
 
@@ -44,12 +44,12 @@ module dds (
     end
     if(islast)begin
       islast<=0;
-      addr<=16'h0000;
+      //addr<=16'h0000;
       case (phase[17:16])
         2'b00:   cos<=data[15:0];   //first quater is pos
-        2'b00:   cos<=data[15:0];   // second and third are neg
-        2'b00:   cos<=data[15:0];
-        2'b00:   cos<=data[15:0];   //fourth quater is pos
+        2'b01:   cos<=~data[15:0];   // second and third are neg
+        2'b10:   cos<=~data[15:0];
+        2'b11:   cos<=data[15:0];   //fourth quater is pos
         default: cos<=data[15:0] ;
       endcase
     end

@@ -1,7 +1,7 @@
 
 
 import numpy as np
-phases = np.linspace(0,2*np.pi, 65536)
+phases = np.linspace(0,0.5*np.pi, 65536)
 values = ((2**15)*np.sin(phases))
 
 values=values.astype(np.int16)
